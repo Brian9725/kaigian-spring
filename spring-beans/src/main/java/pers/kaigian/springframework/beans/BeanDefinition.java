@@ -1,9 +1,12 @@
 package pers.kaigian.springframework.beans;
 
+import lombok.Data;
+
 /**
  * @author BrianHu
  * @create 2021-09-06 10:24
  **/
+@Data
 public class BeanDefinition {
 
     /**
@@ -24,37 +27,5 @@ public class BeanDefinition {
     /**
      * 是否懒加载
      */
-    private boolean isLazy;
-
-    public Object getClazz() {
-        return clazz;
-    }
-
-    public void setClazz(Object clazz) {
-        this.clazz = clazz;
-    }
-
-    public String getBeanName() {
-        return beanName;
-    }
-
-    public void setBeanName(String beanName) {
-        this.beanName = beanName;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public boolean isLazy() {
-        return isLazy;
-    }
-
-    public void setLazy(boolean lazy) {
-        isLazy = lazy;
-    }
+    private boolean lazy;
 }
