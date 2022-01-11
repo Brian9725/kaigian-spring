@@ -1,6 +1,6 @@
 package pers.kaigian.springframework;
 
-import pers.kaigian.springframework.core.annotation.ComponentScan;
+import pers.kaigian.springframework.annotation.ComponentScan;
 
 /**
  * 配置类

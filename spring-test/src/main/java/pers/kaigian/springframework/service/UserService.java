@@ -1,6 +1,6 @@
 package pers.kaigian.springframework.service;
 
-import pers.kaigian.springframework.core.annotation.Component;
+import pers.kaigian.springframework.annotation.Component;
 
 /**
  * @author BrianHu

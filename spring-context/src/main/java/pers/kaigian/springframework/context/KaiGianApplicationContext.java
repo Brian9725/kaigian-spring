@@ -1,6 +1,7 @@
-package pers.kaigian.springframework.core;
+package pers.kaigian.springframework.context;
 
-import pers.kaigian.springframework.core.annotation.ComponentScan;
+import pers.kaigian.springframework.beans.BeanDefinition;
+import pers.kaigian.springframework.annotation.ComponentScan;
 import pers.kaigian.springframework.core.annotation.Scope;
 
 import java.util.Map;

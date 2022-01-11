@@ -1,6 +1,6 @@
 package pers.kaigian.springframework;
 
-import pers.kaigian.springframework.core.KaiGianApplicationContext;
+import pers.kaigian.springframework.context.KaiGianApplicationContext;
 import pers.kaigian.springframework.service.UserService;
 
 /**
