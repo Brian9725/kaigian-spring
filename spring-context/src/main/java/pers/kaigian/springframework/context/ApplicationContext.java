@@ -1,8 +1,11 @@
-package pers.kaigian.springframework.core;
+package pers.kaigian.springframework.context;
 
-import pers.kaigian.springframework.core.annotation.Component;
+import pers.kaigian.springframework.beans.BeanDefinition;
+import pers.kaigian.springframework.annotation.Component;
 import pers.kaigian.springframework.core.annotation.Lazy;
 import pers.kaigian.springframework.core.annotation.Scope;
+import pers.kaigian.springframework.extension.BeanPostProcessor;
+import pers.kaigian.springframework.extension.InitializingBean;
 
 import java.beans.Introspector;
 import java.io.File;
@@ -16,13 +19,19 @@ import java.util.concurrent.ConcurrentHashMap;
  * @create 2021-09-03 22:18
  **/
 public class ApplicationContext {
-    // beanDefinition缓存池
+    /**
+     * beanDefinition缓存池
+     */
     protected Map<String, BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<>();
 
-    // 单例bean缓存池
+    /**
+     * 单例bean缓存池
+     */
     protected Map<String, Object> singletonObjects = new ConcurrentHashMap<>();
 
-    // beanPostProcessor缓存池
+    /**
+     * beanPostProcessor缓存池
+     */
     protected List<BeanPostProcessor> beanPostProcessors = new ArrayList<>();
 
     protected void scan(String scanPath) {
@@ -90,7 +99,7 @@ public class ApplicationContext {
     protected Object createBean(String beanName, BeanDefinition beanDefinition) {
         Object bean = null;
         if (beanDefinitionMap.containsKey(beanName)) {
-            Class clazz = beanDefinition.getClazz();
+            Class clazz = (Class) beanDefinition.getClazz();
             try {
                 bean = clazz.newInstance();
             } catch (InstantiationException e) {
