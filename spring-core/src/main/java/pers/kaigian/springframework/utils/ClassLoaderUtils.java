@@ -5,4 +5,8 @@ package pers.kaigian.springframework.utils;
  * @create 2022-01-11 13:41
  **/
 public class ClassLoaderUtils {
+
+    public static ClassLoader getSystemClassLoader() {
+        return ClassLoader.getSystemClassLoader();
+    }
 }
