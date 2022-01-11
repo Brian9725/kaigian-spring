@@ -1,11 +1,12 @@
 package pers.kaigian.springframework.context;
 
-import pers.kaigian.springframework.beans.BeanDefinition;
 import pers.kaigian.springframework.annotation.Component;
+import pers.kaigian.springframework.beans.BeanDefinition;
 import pers.kaigian.springframework.core.annotation.Lazy;
 import pers.kaigian.springframework.core.annotation.Scope;
 import pers.kaigian.springframework.extension.BeanPostProcessor;
 import pers.kaigian.springframework.extension.InitializingBean;
+import pers.kaigian.springframework.utils.ClassLoaderUtils;
 
 import java.beans.Introspector;
 import java.io.File;
@@ -36,7 +37,7 @@ public class ApplicationContext {
 
     protected void scan(String scanPath) {
         scanPath = scanPath.replace(".", "/");
-        ClassLoader classLoader = ApplicationContext.class.getClassLoader();
+        ClassLoader classLoader = ClassLoaderUtils.getSystemClassLoader();
         File scanFile = new File(classLoader.getResource(scanPath).getFile());
         if (scanFile.isDirectory()) {
             for (File file : scanFile.listFiles()) {
