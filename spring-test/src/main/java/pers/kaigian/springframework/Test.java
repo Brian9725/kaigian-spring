@@ -11,5 +11,12 @@ import pers.kaigian.springframework.context.KaiGianApplicationContext;
 public class Test {
     public static void main(String[] args) {
         new KaiGianApplicationContext();
+        while (true) {
+            log.trace("kaigian");
+            log.debug("kaigian");
+            log.info("kaigian");
+            log.warn("kaigian");
+            log.error("kaigian");
+        }
     }
 }
