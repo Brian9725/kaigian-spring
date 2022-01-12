@@ -19,9 +19,8 @@ public interface BeanFactory {
      *
      * @param name bean名称
      * @return 符合条件的bean
-     * @throws Throwable 抛出的异常或错误信息
      */
-    default Object getBean(String name) throws Throwable {
+    default Object getBean(String name) {
         throw new SpringException(SpringErrorCodeEnum.SERVICE_NOT_SUPPORT);
     }
 
@@ -32,9 +31,8 @@ public interface BeanFactory {
      * @param requiredType 需要的bean类型
      * @param <T>          泛型
      * @return 符合条件的bean
-     * @throws Throwable 抛出的异常或错误信息
      */
-    default <T> T getBean(String name, Class<T> requiredType) throws Throwable {
+    default <T> T getBean(String name, Class<T> requiredType) {
         throw new SpringException(SpringErrorCodeEnum.SERVICE_NOT_SUPPORT);
     }
 
@@ -44,9 +42,8 @@ public interface BeanFactory {
      * @param name bean名称
      * @param args 参数
      * @return 符合条件的bean
-     * @throws Throwable 抛出的异常或错误信息
      */
-    default Object getBean(String name, Object... args) throws Throwable {
+    default Object getBean(String name, Object... args) {
         throw new SpringException(SpringErrorCodeEnum.SERVICE_NOT_SUPPORT);
     }
 
@@ -56,9 +53,8 @@ public interface BeanFactory {
      * @param requiredType 需要的bean类型
      * @param <T>          泛型
      * @return 符合条件的bean
-     * @throws Throwable 抛出的异常或错误信息
      */
-    default <T> T getBean(Class<T> requiredType) throws Throwable {
+    default <T> T getBean(Class<T> requiredType) {
         throw new SpringException(SpringErrorCodeEnum.SERVICE_NOT_SUPPORT);
     }
 
@@ -69,9 +65,8 @@ public interface BeanFactory {
      * @param args         参数
      * @param <T>          泛型
      * @return 符合条件的bean
-     * @throws Throwable 抛出的异常或错误信息
      */
-    default <T> T getBean(Class<T> requiredType, Object... args) throws Throwable {
+    default <T> T getBean(Class<T> requiredType, Object... args) {
         throw new SpringException(SpringErrorCodeEnum.SERVICE_NOT_SUPPORT);
     }
 

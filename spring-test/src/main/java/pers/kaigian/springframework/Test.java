@@ -12,6 +12,7 @@ import pers.kaigian.springframework.service.UserService;
 public class Test {
     public static void main(String[] args) {
         KaiGianApplicationContext kaiGianApplicationContext = new KaiGianApplicationContext(AppConfig.class);
-        UserService userService;
+        UserService userService = (UserService) kaiGianApplicationContext.getBean("userService");
+        userService.test();
     }
 }
