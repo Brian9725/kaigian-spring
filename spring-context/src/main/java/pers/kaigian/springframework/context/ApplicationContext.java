@@ -18,7 +18,7 @@ public class ApplicationContext implements BeanFactory, BeanDefinitionRegistry {
     }
 
     @Override
-    public Object getBean(String name) throws Throwable {
+    public Object getBean(String name) {
         return beanFactory.getBean(name);
     }
 
