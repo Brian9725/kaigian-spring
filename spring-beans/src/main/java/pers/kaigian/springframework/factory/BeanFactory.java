@@ -1,5 +1,8 @@
 package pers.kaigian.springframework.factory;
 
+import pers.kaigian.springframework.exception.SpringErrorCodeEnum;
+import pers.kaigian.springframework.exception.SpringException;
+
 /**
  * @author BrianHu
  * @create 2022-01-11 11:35
@@ -18,7 +21,9 @@ public interface BeanFactory {
      * @return 符合条件的bean
      * @throws Throwable 抛出的异常或错误信息
      */
-    Object getBean(String name) throws Throwable;
+    default Object getBean(String name) throws Throwable {
+        throw new SpringException(SpringErrorCodeEnum.SERVICE_NOT_SUPPORT);
+    }
 
     /**
      * 根据名字获取一个requiredType类型的bean
@@ -29,7 +34,9 @@ public interface BeanFactory {
      * @return 符合条件的bean
      * @throws Throwable 抛出的异常或错误信息
      */
-    <T> T getBean(String name, Class<T> requiredType) throws Throwable;
+    default <T> T getBean(String name, Class<T> requiredType) throws Throwable {
+        throw new SpringException(SpringErrorCodeEnum.SERVICE_NOT_SUPPORT);
+    }
 
     /**
      * 根据名字和参数获取一个bean
@@ -39,7 +46,9 @@ public interface BeanFactory {
      * @return 符合条件的bean
      * @throws Throwable 抛出的异常或错误信息
      */
-    Object getBean(String name, Object... args) throws Throwable;
+    default Object getBean(String name, Object... args) throws Throwable {
+        throw new SpringException(SpringErrorCodeEnum.SERVICE_NOT_SUPPORT);
+    }
 
     /**
      * 根据类型获取一个bean
@@ -49,7 +58,9 @@ public interface BeanFactory {
      * @return 符合条件的bean
      * @throws Throwable 抛出的异常或错误信息
      */
-    <T> T getBean(Class<T> requiredType) throws Throwable;
+    default <T> T getBean(Class<T> requiredType) throws Throwable {
+        throw new SpringException(SpringErrorCodeEnum.SERVICE_NOT_SUPPORT);
+    }
 
     /**
      * 根据参数和类型获取一个bean
@@ -60,7 +71,9 @@ public interface BeanFactory {
      * @return 符合条件的bean
      * @throws Throwable 抛出的异常或错误信息
      */
-    <T> T getBean(Class<T> requiredType, Object... args) throws Throwable;
+    default <T> T getBean(Class<T> requiredType, Object... args) throws Throwable {
+        throw new SpringException(SpringErrorCodeEnum.SERVICE_NOT_SUPPORT);
+    }
 
     /**
      * 是否有名为name的bean
