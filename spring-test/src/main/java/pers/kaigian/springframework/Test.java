@@ -7,6 +7,7 @@ import pers.kaigian.springframework.context.KaiGianApplicationContext;
  * @author BrianHu
  * @create 2021-09-03 22:16
  **/
+@Slf4j
 public class Test {
     public static void main(String[] args) {
         new KaiGianApplicationContext();
