@@ -72,7 +72,7 @@ public class DefaultBeanFactory implements BeanFactory, BeanDefinitionRegistry {
     }
 
     @Override
-    public boolean isSingleton(String name) throws Throwable {
+    public boolean isSingleton(String name) {
         BeanDefinition beanDefinition = beanDefinitionMap.get(name);
         if (beanDefinition == null) {
             throw new BeanException(BeanErrorCodeEnum.BEAN_NOT_EXISTS);
@@ -81,7 +81,7 @@ public class DefaultBeanFactory implements BeanFactory, BeanDefinitionRegistry {
     }
 
     @Override
-    public boolean isPrototype(String name) throws Throwable {
+    public boolean isPrototype(String name) {
         BeanDefinition beanDefinition = beanDefinitionMap.get(name);
         if (beanDefinition == null) {
             throw new BeanException(BeanErrorCodeEnum.BEAN_NOT_EXISTS);

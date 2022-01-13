@@ -28,12 +28,12 @@ public class ApplicationContext implements BeanFactory, BeanDefinitionRegistry {
     }
 
     @Override
-    public boolean isSingleton(String name) throws Throwable {
+    public boolean isSingleton(String name) {
         return beanFactory.isSingleton(name);
     }
 
     @Override
-    public boolean isPrototype(String name) throws Throwable {
+    public boolean isPrototype(String name) {
         return beanFactory.isPrototype(name);
     }
 
