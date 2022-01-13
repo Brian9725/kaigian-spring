@@ -37,7 +37,7 @@ public class DefaultBeanFactory implements BeanFactory, BeanDefinitionRegistry {
         }
         if (!containsBean(name)) {
             log.warn("没有名为{}的bean", name);
-            return new NullBean();
+            return null;
         }
         return createBean(name, beanDefinitionMap.get(name));
     }
@@ -54,13 +54,11 @@ public class DefaultBeanFactory implements BeanFactory, BeanDefinitionRegistry {
         }
         beanDefinition.setClazz(clazz);
         Class<?> beanClass = (Class<?>) beanDefinition.getClazz();
-        Object object = new NullBean();
+        Object object;
         try {
             object = beanClass.newInstance();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
+        } catch (InstantiationException | IllegalAccessException e) {
+            throw new BeanException(e.getMessage(), BeanErrorCodeEnum.ERROR_CODE);
         }
         singletonObjects.put(beanName, object);
         return object;
