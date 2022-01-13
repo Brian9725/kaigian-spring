@@ -83,16 +83,14 @@ public interface BeanFactory {
      *
      * @param name bean名称
      * @return 名为name的bean是否为单例
-     * @throws Throwable 抛出的异常或错误信息
      */
-    boolean isSingleton(String name) throws Throwable;
+    boolean isSingleton(String name);
 
     /**
      * 名为name的bean是否为多例
      *
      * @param name bean名称
      * @return 名为name的bean是否为多例
-     * @throws Throwable 抛出的异常或错误信息
      */
-    boolean isPrototype(String name) throws Throwable;
+    boolean isPrototype(String name);
 }
