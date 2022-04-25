@@ -14,7 +14,7 @@ public enum SpringErrorCodeEnum {
     //错误码
     SUCCESS_CODE("0", "成功"),
     ERROR_CODE("1", "失败"),
-    SERVICE_NOT_SUPPORT("2", "暂不支持刚功能");
+    SERVICE_NOT_SUPPORT("2", "暂不支持该功能");
 
     private String code;
     private String msg;
