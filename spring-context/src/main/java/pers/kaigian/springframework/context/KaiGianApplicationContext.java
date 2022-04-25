@@ -19,7 +19,7 @@ public class KaiGianApplicationContext extends ApplicationContext {
 
     private final ClassPathBeanDefinitionScanner bdScanner;
 
-    private List<String> scanPaths = new ArrayList<>();
+    private final List<String> scanPaths = new ArrayList<>();
 
     public KaiGianApplicationContext() {
         super();
