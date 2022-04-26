@@ -1,6 +1,7 @@
 package pers.kaigian.springframework.support;
 
-import pers.kaigian.springframework.beans.BeanDefinition;
+
+import pers.kaigian.springframework.config.BeanDefinition;
 
 /**
  * @author BrianHu
@@ -9,9 +10,10 @@ import pers.kaigian.springframework.beans.BeanDefinition;
 public interface BeanDefinitionRegistry {
 
     /**
-     * 将bd注册为一个bean
+     * 将BeanDefinition注册为一个bean
      *
-     * @param bd beanDefinition
+     * @param beanName       bean名称
+     * @param beanDefinition beanDefinition
      */
-    void registerBeanDefinition(BeanDefinition bd);
+    void registerBeanDefinition(String beanName, BeanDefinition beanDefinition);
 }

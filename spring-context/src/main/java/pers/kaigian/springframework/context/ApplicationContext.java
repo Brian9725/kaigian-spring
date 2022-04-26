@@ -1,6 +1,6 @@
 package pers.kaigian.springframework.context;
 
-import pers.kaigian.springframework.beans.BeanDefinition;
+import pers.kaigian.springframework.config.BeanDefinition;
 import pers.kaigian.springframework.factory.BeanFactory;
 import pers.kaigian.springframework.factory.DefaultBeanFactory;
 import pers.kaigian.springframework.support.BeanDefinitionRegistry;
@@ -37,8 +37,9 @@ public class ApplicationContext implements BeanFactory, BeanDefinitionRegistry {
         return beanFactory.isPrototype(name);
     }
 
+
     @Override
-    public void registerBeanDefinition(BeanDefinition bd) {
-        beanFactory.registerBeanDefinition(bd);
+    public void registerBeanDefinition(String beanName, BeanDefinition beanDefinition) {
+        this.beanFactory.registerBeanDefinition(beanName, beanDefinition);
     }
 }
