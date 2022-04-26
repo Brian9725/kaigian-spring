@@ -1,8 +1,8 @@
 package pers.kaigian.springframework.factory;
 
 import lombok.extern.slf4j.Slf4j;
-import pers.kaigian.springframework.beans.BeanDefinition;
-import pers.kaigian.springframework.beans.NullBean;
+import pers.kaigian.springframework.config.BeanDefinition;
+import pers.kaigian.springframework.config.GenericBeanDefinition;
 import pers.kaigian.springframework.core.annotation.Scope;
 import pers.kaigian.springframework.exception.BeanErrorCodeEnum;
 import pers.kaigian.springframework.exception.BeanException;
@@ -44,16 +44,16 @@ public class DefaultBeanFactory implements BeanFactory, BeanDefinitionRegistry {
 
     protected Object createBean(String beanName, BeanDefinition beanDefinition) {
         log.info("创建bean：{}...", beanName);
-        Object clazz = beanDefinition.getClazz();
-        if (!(clazz instanceof Class<?>)) {
+        GenericBeanDefinition bd =(GenericBeanDefinition) beanDefinition;
+        Class<?> beanClass = bd.getBeanClass();
+        if (beanClass == null) {
             try {
-                clazz = ClassLoaderUtils.getSystemClassLoader().loadClass((String) clazz);
+                beanClass = ClassLoaderUtils.getSystemClassLoader().loadClass(bd.getBeanClassName());
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }
-        beanDefinition.setClazz(clazz);
-        Class<?> beanClass = (Class<?>) beanDefinition.getClazz();
+        bd.setBeanClass(beanClass);
         Object object;
         try {
             object = beanClass.newInstance();
@@ -75,7 +75,7 @@ public class DefaultBeanFactory implements BeanFactory, BeanDefinitionRegistry {
         if (beanDefinition == null) {
             throw new BeanException(BeanErrorCodeEnum.BEAN_NOT_EXISTS);
         }
-        return (Scope.SINGLETON.equals(beanDefinition.getType()));
+        return (Scope.SINGLETON.equals(beanDefinition.getScope()));
     }
 
     @Override
@@ -84,11 +84,11 @@ public class DefaultBeanFactory implements BeanFactory, BeanDefinitionRegistry {
         if (beanDefinition == null) {
             throw new BeanException(BeanErrorCodeEnum.BEAN_NOT_EXISTS);
         }
-        return (Scope.PROTOTYPE.equals(beanDefinition.getType()));
+        return (Scope.PROTOTYPE.equals(beanDefinition.getScope()));
     }
 
     @Override
-    public void registerBeanDefinition(BeanDefinition bd) {
-        beanDefinitionMap.put(bd.getBeanName(), bd);
+    public void registerBeanDefinition(String beanName, BeanDefinition beanDefinition) {
+        beanDefinitionMap.put(beanName, beanDefinition);
     }
 }

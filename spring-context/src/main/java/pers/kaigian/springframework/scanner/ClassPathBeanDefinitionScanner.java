@@ -2,7 +2,7 @@ package pers.kaigian.springframework.scanner;
 
 import lombok.extern.slf4j.Slf4j;
 import pers.kaigian.springframework.annotation.Component;
-import pers.kaigian.springframework.beans.BeanDefinition;
+import pers.kaigian.springframework.config.*;
 import pers.kaigian.springframework.core.annotation.Lazy;
 import pers.kaigian.springframework.core.annotation.Scope;
 import pers.kaigian.springframework.support.BeanDefinitionRegistry;
@@ -22,10 +22,10 @@ import java.util.Set;
 @Slf4j
 public class ClassPathBeanDefinitionScanner extends BeanDefinitionScanner {
 
-    private final BeanDefinitionRegistry bdRegistry;
+    private final BeanDefinitionRegistry registry;
 
-    public ClassPathBeanDefinitionScanner(BeanDefinitionRegistry bdRegistry) {
-        this.bdRegistry = bdRegistry;
+    public ClassPathBeanDefinitionScanner(BeanDefinitionRegistry registry) {
+        this.registry = registry;
     }
 
     public void scan(String... scanPaths) {
@@ -39,26 +39,41 @@ public class ClassPathBeanDefinitionScanner extends BeanDefinitionScanner {
     private void doScan(String scanPath) {
         Set<BeanDefinition> bdSet = findBeanDefinition(scanPath);
 
-        for (BeanDefinition bd : bdSet) {
-            Object beanClass = bd.getClazz();
-            if (!(beanClass instanceof Class<?>)) {
-                String classPath = (String) beanClass;
-                try {
-                    beanClass = ClassLoaderUtils.getSystemClassLoader().loadClass(classPath);
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
+        for (BeanDefinition beanDefinition : bdSet) {
+            // 解析Scope注解
+            Class<?> beanClass = ((AbstractBeanDefinition) beanDefinition).getBeanClass();
+            String scope;
+            if (beanClass.isAssignableFrom(Scope.class)) {
+                scope = beanClass.getAnnotation(Scope.class).value();
+            } else {
+                scope = BeanDefinition.SCOPE_SINGLETON;
+            }
+            beanDefinition.setScope(scope);
+
+            // 生成beanName
+            String beanName;
+            String nameVal = beanClass.getAnnotation(Component.class).value();
+            if (StringUtils.isNotEmpty(nameVal)) {
+                beanName = nameVal;
+            } else {
+                beanName = Introspector.decapitalize(beanClass.getSimpleName());
+            }
+
+            // 为BeanDefinition设置默认属性
+            if (beanDefinition instanceof AbstractBeanDefinition) {
+                postProcessBeanDefinition((AbstractBeanDefinition) beanDefinition, beanName);
+            }
+
+            // 解析@Lazy、@Primary、@DependsOn、@Role、@Description
+            if (beanDefinition instanceof GenericBeanDefinition) {
+                if (beanClass.isAssignableFrom(Lazy.class)) {
+                    beanDefinition.setLazyInit(true);
                 }
             }
-            if (!(beanClass instanceof Class<?>)) {
-                log.error("beanDefinition的clazz属性{}出错", beanClass);
-                continue;
-            }
-            Class<?> clazz = (Class<?>) beanClass;
 
-            bd.setClazz(clazz);
-            processAnnotation(bd);
-
-            registerBeanDefinition(bd);
+            // 检查Spring容器中是否已经存在该beanName
+            BeanDefinitionHolder bdHolder = new BeanDefinitionHolder(beanDefinition, beanName);
+            registerBeanDefinition(bdHolder, this.registry);
         }
 
     }
@@ -104,42 +119,23 @@ public class ClassPathBeanDefinitionScanner extends BeanDefinitionScanner {
                     e.printStackTrace();
                 }
                 if (clazz != null && clazz.isAnnotationPresent(Component.class)) {
-                    BeanDefinition bd = new BeanDefinition();
-                    bd.setClazz(clazz);
-                    bdSet.add(bd);
+                    ScannedGenericBeanDefinition sbd = new ScannedGenericBeanDefinition();
+                    sbd.setBeanClass(clazz);
+                    bdSet.add(sbd);
                 }
             }
         }
         return bdSet;
     }
 
-    private void initBeanDefinition(BeanDefinition bd) {
-        Class<?> beanClass = (Class<?>) bd.getClazz();
-        String beanName;
-        String nameVal = beanClass.getAnnotation(Component.class).value();
-        if (StringUtils.isNotEmpty(nameVal)) {
-            beanName = nameVal;
-        } else {
-            beanName = Introspector.decapitalize(beanClass.getSimpleName());
-        }
-        bd.setBeanName(beanName);
-        bd.setLazy(false);
-        bd.setType(Scope.SINGLETON);
+    protected void postProcessBeanDefinition(AbstractBeanDefinition beanDefinition, String beanName) {
+        // 设置BeanDefinition的默认值
+        beanDefinition.setLazyInit(false);
+
+        // AutowireCandidate表示某个Bean能否被用来做依赖注入
     }
 
-    private void processAnnotation(BeanDefinition bd) {
-        initBeanDefinition(bd);
-        Class<?> beanClass = (Class<?>) bd.getClazz();
-        if (beanClass.isAssignableFrom(Scope.class)) {
-            String scope = beanClass.getAnnotation(Scope.class).value();
-            bd.setType(scope);
-        }
-        if (beanClass.isAssignableFrom(Lazy.class)) {
-            bd.setLazy(true);
-        }
-    }
-
-    public void registerBeanDefinition(BeanDefinition bd) {
-        bdRegistry.registerBeanDefinition(bd);
+    public void registerBeanDefinition(BeanDefinitionHolder bdHolder, BeanDefinitionRegistry registry) {
+        registry.registerBeanDefinition(bdHolder.getBeanName(), bdHolder.getBeanDefinition());
     }
 }
