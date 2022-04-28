@@ -1,6 +1,6 @@
 package pers.brian.springframework.test.service;
 
-import pers.brian.springframework.core.annotation.Component;
+import pers.brian.springframework.beans.annotation.Component;
 
 /**
  * @author BrianHu

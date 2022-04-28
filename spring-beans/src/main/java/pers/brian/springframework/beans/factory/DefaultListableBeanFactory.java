@@ -1,10 +1,10 @@
 package pers.brian.springframework.beans.factory;
 
 import lombok.extern.slf4j.Slf4j;
-import pers.brian.springframework.core.annotation.Scope;
+import pers.brian.springframework.beans.annotation.Scope;
 import pers.brian.springframework.beans.BeanDefinition;
-import pers.brian.springframework.core.exception.BeansErrorCodeEnum;
-import pers.brian.springframework.core.exception.BeansException;
+import pers.brian.springframework.beans.exception.BeansErrorCodeEnum;
+import pers.brian.springframework.beans.exception.BeansException;
 import pers.brian.springframework.beans.support.BeanDefinitionRegistry;
 import pers.brian.springframework.beans.GenericBeanDefinition;
 import pers.brian.springframework.beans.RootBeanDefinition;

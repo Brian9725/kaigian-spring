@@ -1,7 +1,7 @@
 package pers.brian.springframework.beans;
 
-import pers.brian.springframework.core.exception.BeansErrorCodeEnum;
-import pers.brian.springframework.core.exception.BeansException;
+import pers.brian.springframework.beans.exception.BeansErrorCodeEnum;
+import pers.brian.springframework.beans.exception.BeansException;
 import pers.brian.springframework.core.utils.ClassUtils;
 
 /**

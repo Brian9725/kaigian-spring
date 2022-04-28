@@ -1,4 +1,4 @@
-package pers.brian.springframework.core.annotation;
+package pers.brian.springframework.beans.annotation;
 
 /**
  * @author BrianHu
