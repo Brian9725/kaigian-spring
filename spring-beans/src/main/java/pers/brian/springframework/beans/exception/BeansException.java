@@ -1,4 +1,4 @@
-package pers.brian.springframework.core.exception;
+package pers.brian.springframework.beans.exception;
 
 import lombok.Data;
 
