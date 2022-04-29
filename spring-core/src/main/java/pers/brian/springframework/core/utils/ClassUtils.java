@@ -1,7 +1,5 @@
 package pers.brian.springframework.core.utils;
 
-import pers.brian.springframework.core.utils.ClassLoaderUtils;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,10 +16,14 @@ public class ClassUtils {
             return classMap.get(className);
         }
         if (classLoader == null) {
-            classLoader = ClassLoaderUtils.getSystemClassLoader();
+            classLoader = getSystemClassLoader();
         }
         Class<?> loadClass = classLoader.loadClass(className);
         classMap.put(className, loadClass);
         return loadClass;
+    }
+
+    public static ClassLoader getSystemClassLoader() {
+        return ClassLoader.getSystemClassLoader();
     }
 }

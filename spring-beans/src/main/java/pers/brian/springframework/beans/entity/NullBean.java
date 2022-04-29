@@ -1,4 +1,4 @@
-package pers.brian.springframework.beans;
+package pers.brian.springframework.beans.entity;
 
 /**
  * @author BrianHu
