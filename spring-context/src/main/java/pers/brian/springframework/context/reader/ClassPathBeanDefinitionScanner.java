@@ -1,5 +1,7 @@
 package pers.brian.springframework.context.reader;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pers.brian.springframework.beans.BeanDefinition;
 import pers.brian.springframework.beans.BeanDefinitionHolder;
 import pers.brian.springframework.beans.GenericBeanDefinition;
@@ -22,6 +24,8 @@ import java.util.Set;
  **/
 public class ClassPathBeanDefinitionScanner {
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     private final BeanDefinitionRegistry bdRegistry;
 
     public ClassPathBeanDefinitionScanner(BeanDefinitionRegistry bdRegistry) {
@@ -29,7 +33,9 @@ public class ClassPathBeanDefinitionScanner {
     }
 
     public void scan(String... scanPaths) {
+        logger.info("BeaDefinition扫描开始");
         for (String scanPath : scanPaths) {
+            logger.info("开始扫描{}", scanPath);
             doScan(scanPath);
         }
     }
