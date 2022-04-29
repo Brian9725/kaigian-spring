@@ -1,12 +1,9 @@
 package pers.brian.springframework.beans.exception;
 
-import lombok.Data;
-
 /**
  * @author BrianHu
  * @create 2022-01-11 15:09
  **/
-@Data
 public class BeansException extends RuntimeException {
 
     /**

@@ -14,12 +14,12 @@ public enum SpringErrorCodeEnum {
     private final String code;
     private final String msg;
 
-    public String msg() {
-        return msg;
+    public String getCode() {
+        return code;
     }
 
-    public String code() {
-        return code;
+    public String getMsg() {
+        return msg;
     }
 
     SpringErrorCodeEnum(String code, String msg) {
@@ -29,7 +29,7 @@ public enum SpringErrorCodeEnum {
 
     public static SpringErrorCodeEnum getEnum(String code) {
         for (SpringErrorCodeEnum ele : SpringErrorCodeEnum.values()) {
-            if (ele.code().equals(code)) {
+            if (ele.getCode().equals(code)) {
                 return ele;
             }
         }
