@@ -1,9 +1,8 @@
 package pers.brian.springframework.context;
 
-import lombok.extern.slf4j.Slf4j;
 import pers.brian.springframework.context.annotation.ComponentScan;
-import pers.brian.springframework.context.reader.ClassPathBeanDefinitionScanner;
 import pers.brian.springframework.context.reader.AnnotatedBeanDefinitionReader;
+import pers.brian.springframework.context.reader.ClassPathBeanDefinitionScanner;
 import pers.brian.springframework.core.utils.StringUtils;
 
 import java.util.ArrayList;
@@ -15,7 +14,6 @@ import java.util.List;
  * @author BrianHu
  * @create 2021-09-03 22:22
  **/
-@Slf4j
 public class AnnotationConfigApplicationContext extends ApplicationContext {
 
     private final ClassPathBeanDefinitionScanner scanner;

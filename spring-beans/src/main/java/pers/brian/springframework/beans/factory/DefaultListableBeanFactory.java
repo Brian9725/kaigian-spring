@@ -1,6 +1,5 @@
 package pers.brian.springframework.beans.factory;
 
-import lombok.extern.slf4j.Slf4j;
 import pers.brian.springframework.beans.annotation.Scope;
 import pers.brian.springframework.beans.BeanDefinition;
 import pers.brian.springframework.beans.exception.BeansErrorCodeEnum;
@@ -17,7 +16,6 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author BrianHu
  * @create 2022-01-11 15:04
  **/
-@Slf4j
 public class DefaultListableBeanFactory implements BeanFactory, BeanDefinitionRegistry {
 
     /**
@@ -71,7 +69,6 @@ public class DefaultListableBeanFactory implements BeanFactory, BeanDefinitionRe
     }
 
     protected Object createBean(String beanName, RootBeanDefinition beanDefinition) {
-        log.info("创建bean：{}...", beanName);
         Class<?> clazz = beanDefinition.getBeanClass();
         if (clazz == null) {
             try {
