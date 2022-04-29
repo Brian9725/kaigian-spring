@@ -1,4 +1,6 @@
-package pers.brian.springframework.beans;
+package pers.brian.springframework.beans.definition;
+
+import pers.brian.springframework.beans.entity.MutablePropertyValues;
 
 /**
  * BeanDefinition接口，被注释的是源码中未使用的部分
@@ -150,4 +152,20 @@ public interface BeanDefinition {
      * @return 是否是抽象的BeanDefinition
      */
     boolean isAbstract();
+
+    /**
+     * 获取bean对象的属性名称对象映射集合
+     *
+     * @return 属性名称对象映射集合
+     */
+    MutablePropertyValues getPropertyValues();
+
+    /**
+     * 判断bean对象是否有属性名称对象映射集合
+     *
+     * @return 是否有属性名称对象映射集合
+     */
+    default boolean hasPropertyValues() {
+        return !getPropertyValues().isEmpty();
+    }
 }

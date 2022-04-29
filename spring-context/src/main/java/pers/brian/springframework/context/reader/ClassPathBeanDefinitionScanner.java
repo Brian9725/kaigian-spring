@@ -2,14 +2,14 @@ package pers.brian.springframework.context.reader;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pers.brian.springframework.beans.BeanDefinition;
-import pers.brian.springframework.beans.BeanDefinitionHolder;
-import pers.brian.springframework.beans.GenericBeanDefinition;
+import pers.brian.springframework.beans.definition.BeanDefinition;
+import pers.brian.springframework.beans.definition.BeanDefinitionHolder;
+import pers.brian.springframework.beans.definition.GenericBeanDefinition;
 import pers.brian.springframework.beans.annotation.Component;
 import pers.brian.springframework.beans.annotation.Lazy;
 import pers.brian.springframework.beans.annotation.Scope;
-import pers.brian.springframework.beans.support.BeanDefinitionRegistry;
-import pers.brian.springframework.core.utils.ClassLoaderUtils;
+import pers.brian.springframework.beans.registry.BeanDefinitionRegistry;
+import pers.brian.springframework.core.utils.ClassUtils;
 import pers.brian.springframework.core.utils.StringUtils;
 
 import java.beans.Introspector;
@@ -86,7 +86,7 @@ public class ClassPathBeanDefinitionScanner {
     private File[] loadScanFiles(String scanPath) {
         scanPath = scanPath.replace(".", "/");
         // TODO: 2022/1/12 Spring使用使用的是ResourcePatternResolver
-        ClassLoader classLoader = ClassLoaderUtils.getSystemClassLoader();
+        ClassLoader classLoader = ClassUtils.getSystemClassLoader();
         URL resource = classLoader.getResource(scanPath);
         if (resource == null) {
             return null;
@@ -113,7 +113,7 @@ public class ClassPathBeanDefinitionScanner {
 
         // 加载扫描路径下的所有文件
         File[] scanFiles = loadScanFiles(scanPath);
-        ClassLoader classLoader = ClassLoaderUtils.getSystemClassLoader();
+        ClassLoader classLoader = ClassUtils.getSystemClassLoader();
         if (scanFiles != null) {
             for (File scanFile : scanFiles) {
                 String absolutePath = scanFile.getAbsolutePath();

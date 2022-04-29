@@ -1,8 +1,10 @@
-package pers.brian.springframework.beans.support;
+package pers.brian.springframework.beans.registry;
 
-import pers.brian.springframework.beans.BeanDefinition;
+import pers.brian.springframework.beans.definition.BeanDefinition;
 
 /**
+ * 注册BeanDefinition
+ *
  * @author BrianHu
  * @create 2022-01-11 14:47
  **/

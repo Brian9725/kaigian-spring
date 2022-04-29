@@ -12,8 +12,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface Scope {
-    String SINGLETON = "singleton";
-    String PROTOTYPE = "prototype";
 
-    String value() default SINGLETON;
+    String value();
 }

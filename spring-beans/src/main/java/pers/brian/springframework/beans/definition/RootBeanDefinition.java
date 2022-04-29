@@ -1,4 +1,6 @@
-package pers.brian.springframework.beans;
+package pers.brian.springframework.beans.definition;
+
+import pers.brian.springframework.beans.definition.AbstractBeanDefinition;
 
 /**
  * @author BrianHu
