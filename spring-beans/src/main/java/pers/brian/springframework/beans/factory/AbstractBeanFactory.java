@@ -1,11 +1,15 @@
 package pers.brian.springframework.beans.factory;
 
 import pers.brian.springframework.beans.definition.BeanDefinition;
+import pers.brian.springframework.beans.definition.GenericBeanDefinition;
 import pers.brian.springframework.beans.definition.RootBeanDefinition;
+import pers.brian.springframework.beans.entity.NullBean;
 import pers.brian.springframework.beans.exception.BeanCreationException;
 import pers.brian.springframework.beans.exception.BeansException;
 import pers.brian.springframework.beans.registry.FactoryBeanRegistrySupport;
 import pers.brian.springframework.beans.support.*;
+import pers.brian.springframework.core.exception.SpringErrorCodeEnum;
+import pers.brian.springframework.core.exception.SpringException;
 import pers.brian.springframework.core.utils.ClassUtils;
 
 import java.util.ArrayList;
@@ -40,7 +44,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
     /**
      * 特殊BeanPostProcessor分类缓存
      */
-    private BeanPostProcessorCache beanPostProcessorCache;
+    private BeanPostProcessorCache beanPostProcessorCache = new BeanPostProcessorCache();
 
     /**
      * BeanPostProcessor缓存
@@ -85,29 +89,51 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
     }
 
     private <T> T doGetBean(String name, Class<T> requiredType, Object... args) {
-        Object bean = this.mergedBeanDefinitions.get(name);
+        // 名称转换：
+        String beanName = name;
+        Object bean = getSingleton(beanName);
         if (bean != null) {
             // TODO: 2022/4/29 判断是否是FactoryBean，这里先直接返回
-            return (T) bean;
+
         } else {
-            // 合并BeanDefinition用来创建Bean
-            RootBeanDefinition rbd = new RootBeanDefinition();
             // 暂不考虑父子BeanFactory
+
+            // 合并BeanDefinition用来创建Bean
+            RootBeanDefinition rbd = getMergedLocalBeanDefinition(beanName);
+
             // TODO: 2022/4/29 处理@DependsOn注解
             // 判断BeanDefinition类型：是否是单例
             if (BeanDefinition.SCOPE_SINGLETON.equals(rbd.getScope())) {
-                bean = createBean(name, rbd, args);
+                bean = createBean(beanName, rbd, args);
+                // 单例bean放入缓存池
+                registerSingleton(beanName, bean);
             }
             // 多例Bean直接创建
             else if (BeanDefinition.SCOPE_PROTOTYPE.equals(rbd.getScope())) {
-
+                bean = createBean(beanName, rbd, args);
             }
-            // 其他类型的BeanDefinition：Request、Session等
+            // 其他类型的BeanDefinition：Request、Session等，暂不考虑
             else {
-
+                bean = new NullBean();
             }
         }
         // 检查类型
+        return adaptBeanInstance(beanName, bean, requiredType);
+    }
+
+    protected RootBeanDefinition getMergedLocalBeanDefinition(String beanName) {
+        RootBeanDefinition rbd = new RootBeanDefinition();
+        GenericBeanDefinition gbd = (GenericBeanDefinition) getBeanDefinition(beanName);
+        rbd.setBeanClass(gbd.getBeanClass());
+        rbd.setScope(gbd.getScope());
+        return rbd;
+    }
+
+    <T> T adaptBeanInstance(String name, Object bean, Class<?> requiredType) {
+        // 需要进行类型转换
+        if (requiredType != null && !(requiredType.isInstance(bean))) {
+            throw new SpringException(SpringErrorCodeEnum.SERVICE_NOT_SUPPORT);
+        }
         return (T) bean;
     }
 
