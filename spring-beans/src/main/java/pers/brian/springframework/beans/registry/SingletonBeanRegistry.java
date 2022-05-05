@@ -1,7 +1,7 @@
 package pers.brian.springframework.beans.registry;
 
 /**
- * 注册单例Bean
+ * 单例Bean注册接口
  *
  * @author BrianHu
  * @create 2022-04-29 14:42

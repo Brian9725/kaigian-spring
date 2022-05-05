@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author BrianHu
  * @create 2022-01-11 15:04
  **/
-public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory implements BeanDefinitionRegistry {
+public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory implements ConfigurableListableBeanFactory, BeanDefinitionRegistry {
 
     /**
      * beanDefinition缓存池
@@ -29,12 +29,32 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
     }
 
     @Override
-    protected boolean containsBeanDefinition(String beanName) {
+    public void removeBeanDefinition(String beanName) {
+
+    }
+
+    @Override
+    public boolean containsBeanDefinition(String beanName) {
         return beanDefinitionMap.containsKey(beanName);
     }
 
     @Override
-    protected BeanDefinition getBeanDefinition(String beanName) throws BeansException {
+    public int getBeanDefinitionCount() {
+        return 0;
+    }
+
+    @Override
+    public boolean isBeanNameInUse(String beanName) {
+        return false;
+    }
+
+    @Override
+    public String[] getBeanDefinitionNames() {
+        return new String[0];
+    }
+
+    @Override
+    public BeanDefinition getBeanDefinition(String beanName) throws BeansException {
         return beanDefinitionMap.get(beanName);
     }
 }

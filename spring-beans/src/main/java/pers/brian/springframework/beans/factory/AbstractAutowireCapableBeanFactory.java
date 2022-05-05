@@ -18,7 +18,7 @@ import pers.brian.springframework.beans.support.MergedBeanDefinitionPostProcesso
  * @author BrianHu
  * @create 2022-04-29 15:25
  **/
-public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory {
+public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory implements AutowireCapableBeanFactory {
 
     @Override
     protected Object createBean(String beanName, RootBeanDefinition rootBeanDefinition, Object[] args) throws BeanCreationException {
