@@ -1,12 +1,14 @@
 package pers.brian.springframework.beans.factory;
 
+import pers.brian.springframework.beans.registry.SingletonBeanRegistry;
+
 /**
  * 表示BeanFactory可做一些自定义配置
  *
  * @author BrianHu
  * @create 2022-04-29 14:11
  **/
-public interface ConfigurableBeanFactory extends HierarchicalBeanFactory {
+public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, SingletonBeanRegistry {
 
     /**
      * 设置父BeanFactory
