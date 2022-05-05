@@ -130,7 +130,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
     }
 
     <T> T adaptBeanInstance(String name, Object bean, Class<?> requiredType) {
-        // 需要进行类型转换
+        // TODO: 2022/5/1 需要进行类型转换 
         if (requiredType != null && !(requiredType.isInstance(bean))) {
             throw new SpringException(SpringErrorCodeEnum.SERVICE_NOT_SUPPORT);
         }
