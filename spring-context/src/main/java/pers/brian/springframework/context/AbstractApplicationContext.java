@@ -1,0 +1,38 @@
+package pers.brian.springframework.context;
+
+import pers.brian.springframework.beans.factory.BeanFactory;
+
+/**
+ * @author BrianHu
+ * @create 2022-04-29 9:49
+ **/
+public abstract class AbstractApplicationContext implements ApplicationContext {
+
+    @Override
+    public Object getBean(String name) {
+        return getBeanFactory().getBean(name);
+    }
+
+    @Override
+    public boolean containsBean(String name) {
+        return false;
+    }
+
+    @Override
+    public boolean isSingleton(String name) {
+        return false;
+    }
+
+    @Override
+    public boolean isPrototype(String name) {
+        return false;
+    }
+
+    /**
+     * 获取当前使用的BeanFactory，具体交给子类实现
+     *
+     * @return 当前使用的BeanFactory
+     */
+    @Override
+    public abstract BeanFactory getBeanFactory();
+}
