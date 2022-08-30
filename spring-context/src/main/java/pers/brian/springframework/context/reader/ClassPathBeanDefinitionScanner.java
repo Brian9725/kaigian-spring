@@ -71,7 +71,7 @@ public class ClassPathBeanDefinitionScanner {
                 gbd.setLazyInit(true);
             }
 
-            BeanDefinitionHolder bdHolder = new BeanDefinitionHolder(beanName, gbd);
+            BeanDefinitionHolder bdHolder = new BeanDefinitionHolder(gbd, beanName);
             registerBeanDefinition(bdHolder);
         }
 

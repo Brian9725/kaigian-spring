@@ -1,8 +1,8 @@
 package pers.brian.springframework.beans.definition;
 
 import pers.brian.springframework.beans.entity.MutablePropertyValues;
-import pers.brian.springframework.beans.exception.BeansErrorCodeEnum;
-import pers.brian.springframework.beans.exception.BeansException;
+import pers.brian.springframework.core.exception.SpringErrorCodeEnum;
+import pers.brian.springframework.core.exception.SpringException;
 import pers.brian.springframework.core.utils.ClassUtils;
 
 /**
@@ -74,10 +74,10 @@ public abstract class AbstractBeanDefinition implements BeanDefinition, Cloneabl
     public Class<?> getBeanClass() {
         Object beanClassObj = this.beanClass;
         if (beanClassObj == null) {
-            throw new BeansException(BeansErrorCodeEnum.ERROR_CODE);
+            throw new SpringException(SpringErrorCodeEnum.ERROR_CODE);
         }
         if (!(beanClassObj instanceof Class<?>)) {
-            throw new BeansException(BeansErrorCodeEnum.ERROR_CODE);
+            throw new SpringException(SpringErrorCodeEnum.ERROR_CODE);
         }
         return (Class<?>) beanClassObj;
     }

@@ -8,11 +8,11 @@ import pers.brian.springframework.beans.definition.BeanDefinition;
 import pers.brian.springframework.beans.definition.RootBeanDefinition;
 import pers.brian.springframework.beans.entity.NullBean;
 import pers.brian.springframework.beans.entity.PropertyValues;
-import pers.brian.springframework.beans.exception.BeanCreationException;
 import pers.brian.springframework.beans.support.BeanPostProcessor;
 import pers.brian.springframework.beans.support.InitializingBean;
 import pers.brian.springframework.beans.support.InstantiationAwareBeanPostProcessor;
 import pers.brian.springframework.beans.support.MergedBeanDefinitionPostProcessor;
+import pers.brian.springframework.core.exception.SpringException;
 
 /**
  * @author BrianHu
@@ -21,7 +21,7 @@ import pers.brian.springframework.beans.support.MergedBeanDefinitionPostProcesso
 public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory implements AutowireCapableBeanFactory {
 
     @Override
-    protected Object createBean(String beanName, RootBeanDefinition rootBeanDefinition, Object[] args) throws BeanCreationException {
+    protected Object createBean(String beanName, RootBeanDefinition rootBeanDefinition, Object[] args) throws SpringException {
         // 如果没加载Class，先加载Class
         Class<?> beanClass = rootBeanDefinition.getBeanClass();
 

@@ -1,7 +1,7 @@
 package pers.brian.springframework.beans.support;
 
 import pers.brian.springframework.beans.entity.PropertyValues;
-import pers.brian.springframework.beans.exception.BeansException;
+import pers.brian.springframework.core.exception.SpringException;
 
 /**
  * @author BrianHu
@@ -15,9 +15,9 @@ public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
      * @param beanClass 用来创建bean的Class对象
      * @param beanName  bean名称
      * @return 创建出来的bean
-     * @throws BeansException 异常
+     * @throws SpringException 异常
      */
-    default Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) throws BeansException {
+    default Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) throws SpringException {
         return null;
     }
 
@@ -27,9 +27,9 @@ public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
      * @param bean     实例化的bean
      * @param beanName bean名称
      * @return true
-     * @throws BeansException 异常
+     * @throws SpringException 异常
      */
-    default boolean postProcessAfterInstantiation(Object bean, String beanName) throws BeansException {
+    default boolean postProcessAfterInstantiation(Object bean, String beanName) throws SpringException {
         return true;
     }
 
@@ -40,9 +40,9 @@ public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
      * @param bean     bean对象
      * @param beanName bean名称
      * @return bean的属性名称对象集合
-     * @throws BeansException 异常
+     * @throws SpringException 异常
      */
-    default PropertyValues postProcessProperties(PropertyValues pvs, Object bean, String beanName) throws BeansException {
+    default PropertyValues postProcessProperties(PropertyValues pvs, Object bean, String beanName) throws SpringException {
         return null;
     }
 }

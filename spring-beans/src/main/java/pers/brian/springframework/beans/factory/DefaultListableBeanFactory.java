@@ -1,8 +1,8 @@
 package pers.brian.springframework.beans.factory;
 
 import pers.brian.springframework.beans.definition.BeanDefinition;
-import pers.brian.springframework.beans.exception.BeansException;
 import pers.brian.springframework.beans.registry.BeanDefinitionRegistry;
+import pers.brian.springframework.core.exception.SpringException;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -54,7 +54,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
     }
 
     @Override
-    public BeanDefinition getBeanDefinition(String beanName) throws BeansException {
+    public BeanDefinition getBeanDefinition(String beanName) throws SpringException {
         return beanDefinitionMap.get(beanName);
     }
 }

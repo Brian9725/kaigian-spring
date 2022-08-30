@@ -4,8 +4,6 @@ import pers.brian.springframework.beans.definition.BeanDefinition;
 import pers.brian.springframework.beans.definition.GenericBeanDefinition;
 import pers.brian.springframework.beans.definition.RootBeanDefinition;
 import pers.brian.springframework.beans.entity.NullBean;
-import pers.brian.springframework.beans.exception.BeanCreationException;
-import pers.brian.springframework.beans.exception.BeansException;
 import pers.brian.springframework.beans.registry.FactoryBeanRegistrySupport;
 import pers.brian.springframework.beans.support.*;
 import pers.brian.springframework.core.exception.SpringErrorCodeEnum;
@@ -231,9 +229,9 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
      *
      * @param beanName bean名称
      * @return 原始的BeanDefinition
-     * @throws BeansException 异常
+     * @throws SpringException 异常
      */
-    protected abstract BeanDefinition getBeanDefinition(String beanName) throws BeansException;
+    protected abstract BeanDefinition getBeanDefinition(String beanName) throws SpringException;
 
     /**
      * 创建一个bean，留待子类具体实现
@@ -242,7 +240,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
      * @param mbd      经过合并的BeanDefinition
      * @param args     创建bean用到的参数
      * @return 创建出的bean
-     * @throws BeanCreationException 异常
+     * @throws SpringException 异常
      */
-    protected abstract Object createBean(String beanName, RootBeanDefinition mbd, Object[] args) throws BeanCreationException;
+    protected abstract Object createBean(String beanName, RootBeanDefinition mbd, Object[] args) throws SpringException;
 }
