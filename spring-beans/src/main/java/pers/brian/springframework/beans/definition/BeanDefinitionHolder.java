@@ -6,20 +6,27 @@ package pers.brian.springframework.beans.definition;
  **/
 public class BeanDefinitionHolder {
 
-    private final String beanName;
-
     private final BeanDefinition beanDefinition;
 
-    public BeanDefinitionHolder(String beanName, BeanDefinition beanDefinition) {
-        this.beanName = beanName;
+    private final String beanName;
+
+    private final String[] aliases;
+
+    public BeanDefinitionHolder(BeanDefinition beanDefinition, String beanName) {
+        this(beanDefinition, beanName, null);
+    }
+
+    public BeanDefinitionHolder(BeanDefinition beanDefinition, String beanName, String[] aliases) {
         this.beanDefinition = beanDefinition;
+        this.beanName = beanName;
+        this.aliases = aliases;
+    }
+
+    public BeanDefinition getBeanDefinition(){
+        return beanDefinition;
     }
 
     public String getBeanName() {
         return beanName;
-    }
-
-    public BeanDefinition getBeanDefinition() {
-        return beanDefinition;
     }
 }
