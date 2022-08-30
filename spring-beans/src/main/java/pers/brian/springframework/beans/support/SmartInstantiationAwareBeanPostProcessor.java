@@ -1,6 +1,6 @@
 package pers.brian.springframework.beans.support;
 
-import pers.brian.springframework.beans.exception.BeansException;
+import pers.brian.springframework.core.exception.SpringException;
 
 import java.lang.reflect.Constructor;
 
@@ -16,9 +16,9 @@ public interface SmartInstantiationAwareBeanPostProcessor extends InstantiationA
      * @param beanClass 用于生成bean的Class对象
      * @param beanName  bean名称
      * @return 推测的bean类型
-     * @throws BeansException 异常
+     * @throws SpringException 异常
      */
-    default Class<?> predictBeanType(Class<?> beanClass, String beanName) throws BeansException {
+    default Class<?> predictBeanType(Class<?> beanClass, String beanName) throws SpringException {
         return null;
     }
 
@@ -28,9 +28,9 @@ public interface SmartInstantiationAwareBeanPostProcessor extends InstantiationA
      * @param beanClass 用于生成bean的Class对象
      * @param beanName  bean名称
      * @return 用于实例化bean的构造方法
-     * @throws BeansException 异常
+     * @throws SpringException 异常
      */
-    default Constructor<?>[] determineCandidateConstructors(Class<?> beanClass, String beanName) throws BeansException {
+    default Constructor<?>[] determineCandidateConstructors(Class<?> beanClass, String beanName) throws SpringException {
         return null;
     }
 
@@ -40,9 +40,9 @@ public interface SmartInstantiationAwareBeanPostProcessor extends InstantiationA
      * @param bean     bean对象
      * @param beanName bean名称
      * @return bean对象
-     * @throws BeansException 异常
+     * @throws SpringException 异常
      */
-    default Object getEarlyBeanReference(Object bean, String beanName) throws BeansException {
+    default Object getEarlyBeanReference(Object bean, String beanName) throws SpringException {
         return bean;
     }
 

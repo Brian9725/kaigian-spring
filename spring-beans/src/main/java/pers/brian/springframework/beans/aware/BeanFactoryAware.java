@@ -1,7 +1,7 @@
 package pers.brian.springframework.beans.aware;
 
-import pers.brian.springframework.beans.exception.BeansException;
 import pers.brian.springframework.beans.factory.BeanFactory;
+import pers.brian.springframework.core.exception.SpringException;
 
 /**
  * @author BrianHu
@@ -13,7 +13,7 @@ public interface BeanFactoryAware extends Aware {
      * 设置生产这个bean的BeanFactory
      *
      * @param beanFactory beanFactory
-     * @throws BeansException 异常
+     * @throws SpringException 异常
      */
-    void setBeanFactory(BeanFactory beanFactory) throws BeansException;
+    void setBeanFactory(BeanFactory beanFactory) throws SpringException;
 }
