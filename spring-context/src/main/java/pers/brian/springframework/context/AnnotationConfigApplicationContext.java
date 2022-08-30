@@ -1,22 +1,21 @@
 package pers.brian.springframework.context;
 
-import lombok.extern.slf4j.Slf4j;
 import pers.brian.springframework.context.annotation.ComponentScan;
-import pers.brian.springframework.context.reader.ClassPathBeanDefinitionScanner;
 import pers.brian.springframework.context.reader.AnnotatedBeanDefinitionReader;
+import pers.brian.springframework.context.reader.ClassPathBeanDefinitionScanner;
+import pers.brian.springframework.context.support.AnnotationConfigRegistry;
 import pers.brian.springframework.core.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 自己的Spring上下文环境
+ * 基于注解的Spring上下文环境
  *
  * @author BrianHu
  * @create 2021-09-03 22:22
  **/
-@Slf4j
-public class AnnotationConfigApplicationContext extends ApplicationContext {
+public class AnnotationConfigApplicationContext extends GenericApplicationContext implements AnnotationConfigRegistry {
 
     private final ClassPathBeanDefinitionScanner scanner;
 
@@ -36,7 +35,9 @@ public class AnnotationConfigApplicationContext extends ApplicationContext {
         refresh();
     }
 
+    @Override
     public void register(Class<?>... configClasses) {
+        reader.register(configClasses);
         for (Class<?> configClass : configClasses) {
             if (configClass.isAnnotationPresent(ComponentScan.class)) {
                 String scanPath = configClass.getAnnotation(ComponentScan.class).value();
@@ -45,6 +46,11 @@ public class AnnotationConfigApplicationContext extends ApplicationContext {
                 }
             }
         }
+    }
+
+    @Override
+    public void scan(String... basePackages) {
+        this.scanner.scan(basePackages);
     }
 
     public void refresh() {

@@ -27,8 +27,8 @@ public class SpringException extends RuntimeException {
     }
 
     public SpringException(SpringErrorCodeEnum springErrorCodeEnum) {
-        super(springErrorCodeEnum.msg());
-        this.errorMessage = springErrorCodeEnum.msg();
+        super(springErrorCodeEnum.getMsg());
+        this.errorMessage = springErrorCodeEnum.getMsg();
         this.springErrorCodeEnum = springErrorCodeEnum;
     }
 

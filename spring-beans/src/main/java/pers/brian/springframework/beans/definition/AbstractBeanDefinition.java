@@ -1,7 +1,8 @@
-package pers.brian.springframework.beans;
+package pers.brian.springframework.beans.definition;
 
-import pers.brian.springframework.beans.exception.BeansErrorCodeEnum;
-import pers.brian.springframework.beans.exception.BeansException;
+import pers.brian.springframework.beans.entity.MutablePropertyValues;
+import pers.brian.springframework.core.exception.SpringErrorCodeEnum;
+import pers.brian.springframework.core.exception.SpringException;
 import pers.brian.springframework.core.utils.ClassUtils;
 
 /**
@@ -47,6 +48,11 @@ public abstract class AbstractBeanDefinition implements BeanDefinition, Cloneabl
      */
     private String description;
 
+    /**
+     * 属性名称对象映射
+     */
+    private MutablePropertyValues propertyValues;
+
     @Override
     public void setBeanClassName(String beanClassName) {
         this.beanClass = beanClassName;
@@ -68,10 +74,10 @@ public abstract class AbstractBeanDefinition implements BeanDefinition, Cloneabl
     public Class<?> getBeanClass() {
         Object beanClassObj = this.beanClass;
         if (beanClassObj == null) {
-            throw new BeansException(BeansErrorCodeEnum.ERROR_CODE);
+            throw new SpringException(SpringErrorCodeEnum.ERROR_CODE);
         }
         if (!(beanClassObj instanceof Class<?>)) {
-            throw new BeansException(BeansErrorCodeEnum.ERROR_CODE);
+            throw new SpringException(SpringErrorCodeEnum.ERROR_CODE);
         }
         return (Class<?>) beanClassObj;
     }
@@ -163,5 +169,22 @@ public abstract class AbstractBeanDefinition implements BeanDefinition, Cloneabl
     @Override
     public boolean isAbstract() {
         return false;
+    }
+
+    public void setPropertyValues(MutablePropertyValues propertyValues) {
+        this.propertyValues = propertyValues;
+    }
+
+    @Override
+    public MutablePropertyValues getPropertyValues() {
+        if (this.propertyValues == null) {
+            this.propertyValues = new MutablePropertyValues();
+        }
+        return this.propertyValues;
+    }
+
+    @Override
+    public boolean hasPropertyValues() {
+        return (this.propertyValues != null && !this.propertyValues.isEmpty());
     }
 }

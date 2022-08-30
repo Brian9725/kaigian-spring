@@ -1,0 +1,15 @@
+package pers.brian.springframework.beans.aware;
+
+/**
+ * @author BrianHu
+ * @create 2022-04-29 16:52
+ **/
+public interface BeanClassLoaderAware extends Aware {
+
+    /**
+     * 设置该bean的类加载器
+     *
+     * @param classLoader 类加载器
+     */
+    void setBeanClassLoader(ClassLoader classLoader);
+}
