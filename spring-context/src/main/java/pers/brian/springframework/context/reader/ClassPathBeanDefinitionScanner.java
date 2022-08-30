@@ -1,15 +1,16 @@
 package pers.brian.springframework.context.reader;
 
-import lombok.extern.slf4j.Slf4j;
-import pers.brian.springframework.beans.BeanDefinition;
-import pers.brian.springframework.beans.BeanDefinitionHolder;
-import pers.brian.springframework.beans.GenericBeanDefinition;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import pers.brian.springframework.beans.definition.BeanDefinition;
+import pers.brian.springframework.beans.definition.BeanDefinitionHolder;
+import pers.brian.springframework.beans.definition.GenericBeanDefinition;
 import pers.brian.springframework.beans.annotation.Component;
 import pers.brian.springframework.beans.annotation.Lazy;
 import pers.brian.springframework.beans.annotation.Scope;
-import pers.brian.springframework.core.utils.ClassLoaderUtils;
+import pers.brian.springframework.beans.registry.BeanDefinitionRegistry;
+import pers.brian.springframework.core.utils.ClassUtils;
 import pers.brian.springframework.core.utils.StringUtils;
-import pers.brian.springframework.beans.support.BeanDefinitionRegistry;
 
 import java.beans.Introspector;
 import java.io.File;
@@ -21,8 +22,9 @@ import java.util.Set;
  * @author BrianHu
  * @create 2022-01-11 14:44
  **/
-@Slf4j
 public class ClassPathBeanDefinitionScanner {
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private final BeanDefinitionRegistry bdRegistry;
 
@@ -31,9 +33,9 @@ public class ClassPathBeanDefinitionScanner {
     }
 
     public void scan(String... scanPaths) {
-        log.info("BeanDefinition扫描开始");
+        logger.info("BeaDefinition扫描开始");
         for (String scanPath : scanPaths) {
-            log.info("开始扫描{}路径", scanPath);
+            logger.info("开始扫描{}", scanPath);
             doScan(scanPath);
         }
     }
@@ -69,7 +71,7 @@ public class ClassPathBeanDefinitionScanner {
                 gbd.setLazyInit(true);
             }
 
-            BeanDefinitionHolder bdHolder = new BeanDefinitionHolder(beanName, gbd);
+            BeanDefinitionHolder bdHolder = new BeanDefinitionHolder(gbd, beanName);
             registerBeanDefinition(bdHolder);
         }
 
@@ -84,20 +86,17 @@ public class ClassPathBeanDefinitionScanner {
     private File[] loadScanFiles(String scanPath) {
         scanPath = scanPath.replace(".", "/");
         // TODO: 2022/1/12 Spring使用使用的是ResourcePatternResolver
-        ClassLoader classLoader = ClassLoaderUtils.getSystemClassLoader();
+        ClassLoader classLoader = ClassUtils.getSystemClassLoader();
         URL resource = classLoader.getResource(scanPath);
         if (resource == null) {
-            log.error("包扫描路径{}不存在", scanPath);
             return null;
         }
         File scanDir = new File(resource.getFile());
         if (!scanDir.isDirectory()) {
-            log.error("包扫描路径{}不正确", scanPath);
             return null;
         }
         File[] scanFiles = scanDir.listFiles();
         if (scanFiles == null || scanFiles.length == 0) {
-            log.info("包扫描路径{}下为空", scanPath);
             return null;
         }
         return scanFiles;
@@ -114,7 +113,7 @@ public class ClassPathBeanDefinitionScanner {
 
         // 加载扫描路径下的所有文件
         File[] scanFiles = loadScanFiles(scanPath);
-        ClassLoader classLoader = ClassLoaderUtils.getSystemClassLoader();
+        ClassLoader classLoader = ClassUtils.getSystemClassLoader();
         if (scanFiles != null) {
             for (File scanFile : scanFiles) {
                 String absolutePath = scanFile.getAbsolutePath();

@@ -1,6 +1,6 @@
 package pers.brian.springframework.context.reader;
 
-import pers.brian.springframework.beans.support.BeanDefinitionRegistry;
+import pers.brian.springframework.beans.registry.BeanDefinitionRegistry;
 
 /**
  * @author BrianHu
@@ -12,5 +12,15 @@ public class AnnotatedBeanDefinitionReader {
 
     public AnnotatedBeanDefinitionReader(BeanDefinitionRegistry bdRegistry) {
         this.bdRegistry = bdRegistry;
+    }
+
+    public void register(Class<?>... componentClasses) {
+        for (Class<?> clazz : componentClasses) {
+            registerBean(clazz);
+        }
+    }
+
+    public void registerBean(Class<?> beanClass) {
+
     }
 }
