@@ -5,8 +5,7 @@ import pers.brian.springframework.context.annotation.ComponentScan;
 /**
  * 配置类
  *
- * @author BrianHu
- * @create 2021-09-03 22:29
+ * @author kaigian
  **/
 @ComponentScan("pers.brian.springframework.test.service")
 public class AppConfig {

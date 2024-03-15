@@ -3,8 +3,7 @@ package pers.brian.springframework.beans.support;
 import pers.brian.springframework.beans.definition.RootBeanDefinition;
 
 /**
- * @author BrianHu
- * @create 2022-04-27 16:24
+ * @author kaigian
  **/
 public interface MergedBeanDefinitionPostProcessor extends BeanPostProcessor {
 

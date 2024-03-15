@@ -1,8 +1,7 @@
 package pers.brian.springframework.core.utils;
 
 /**
- * @author BrianHu
- * @create 2022-01-11 11:09
+ * @author kaigian
  **/
 public class StringUtils {
 

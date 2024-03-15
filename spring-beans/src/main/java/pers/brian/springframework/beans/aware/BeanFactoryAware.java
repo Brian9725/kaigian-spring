@@ -4,8 +4,7 @@ import pers.brian.springframework.beans.factory.BeanFactory;
 import pers.brian.springframework.core.exception.SpringException;
 
 /**
- * @author BrianHu
- * @create 2022-04-29 16:52
+ * @author kaigian
  **/
 public interface BeanFactoryAware extends Aware {
 

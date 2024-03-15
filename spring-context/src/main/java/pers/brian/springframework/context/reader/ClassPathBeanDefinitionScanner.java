@@ -19,8 +19,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
- * @author BrianHu
- * @create 2022-01-11 14:44
+ * @author kaigian
  **/
 public class ClassPathBeanDefinitionScanner {
 

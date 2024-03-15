@@ -5,8 +5,7 @@ import pers.brian.springframework.beans.definition.BeanDefinition;
 /**
  * 对BeanDefinition的操作
  *
- * @author BrianHu
- * @create 2022-01-11 14:47
+ * @author kaigian
  **/
 public interface BeanDefinitionRegistry {
 

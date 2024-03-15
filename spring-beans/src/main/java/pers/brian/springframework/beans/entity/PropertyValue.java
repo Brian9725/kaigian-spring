@@ -1,8 +1,7 @@
 package pers.brian.springframework.beans.entity;
 
 /**
- * @author BrianHu
- * @create 2022-04-29 16:27
+ * @author kaigian
  **/
 public class PropertyValue {
 

@@ -8,8 +8,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @author BrianHu
- * @create 2022-01-11 15:04
+ * @author kaigian
  **/
 public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory implements ConfigurableListableBeanFactory, BeanDefinitionRegistry {
 

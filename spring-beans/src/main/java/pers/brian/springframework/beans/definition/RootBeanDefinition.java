@@ -1,8 +1,7 @@
 package pers.brian.springframework.beans.definition;
 
 /**
- * @author BrianHu
- * @create 2022-04-27 16:39
+ * @author kaigian
  **/
 public class RootBeanDefinition extends AbstractBeanDefinition {
 

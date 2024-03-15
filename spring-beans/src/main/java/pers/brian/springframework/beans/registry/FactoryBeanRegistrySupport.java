@@ -6,8 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * 对FactoryBean的支持
  *
- * @author BrianHu
- * @create 2022-04-29 14:57
+ * @author kaigian
  **/
 public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanRegistry {
 

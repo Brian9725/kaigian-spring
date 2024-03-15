@@ -3,8 +3,7 @@ package pers.brian.springframework.beans.factory;
 /**
  * 表示BeanFactory拥有继承的能力（可以有父BeanFactory)
  *
- * @author BrianHu
- * @create 2022-04-29 13:58
+ * @author kaigian
  **/
 public interface HierarchicalBeanFactory extends BeanFactory {
 

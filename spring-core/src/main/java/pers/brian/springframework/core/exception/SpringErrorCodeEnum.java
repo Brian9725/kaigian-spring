@@ -1,8 +1,7 @@
 package pers.brian.springframework.core.exception;
 
 /**
- * @author BrianHu
- * @create 2022-01-11 15:36
+ * @author kaigian
  **/
 public enum SpringErrorCodeEnum {
 

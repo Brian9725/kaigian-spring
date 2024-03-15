@@ -1,8 +1,7 @@
 package pers.brian.springframework.context.support;
 
 /**
- * @author BrianHu
- * @create 2022-04-29 10:02
+ * @author kaigian
  **/
 public interface AnnotationConfigRegistry {
 

@@ -5,8 +5,7 @@ import pers.brian.springframework.core.exception.SpringException;
 import java.lang.reflect.Constructor;
 
 /**
- * @author BrianHu
- * @create 2022-04-29 15:37
+ * @author kaigian
  **/
 public interface SmartInstantiationAwareBeanPostProcessor extends InstantiationAwareBeanPostProcessor {
 

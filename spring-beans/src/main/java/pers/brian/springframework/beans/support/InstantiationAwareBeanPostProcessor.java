@@ -4,8 +4,7 @@ import pers.brian.springframework.beans.entity.PropertyValues;
 import pers.brian.springframework.core.exception.SpringException;
 
 /**
- * @author BrianHu
- * @create 2022-04-27 16:22
+ * @author kaigian
  **/
 public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
 

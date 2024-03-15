@@ -5,8 +5,7 @@ import pers.brian.springframework.core.exception.SpringException;
 /**
  * bean销毁时的扩展点
  *
- * @author BrianHu
- * @create 2022-04-29 15:38
+ * @author kaigian
  **/
 public interface DestructionAwareBeanPostProcessor extends BeanPostProcessor {
 

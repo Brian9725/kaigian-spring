@@ -6,8 +6,7 @@ import pers.brian.springframework.beans.factory.DefaultListableBeanFactory;
 import pers.brian.springframework.beans.registry.BeanDefinitionRegistry;
 
 /**
- * @author BrianHu
- * @create 2022-04-29 9:59
+ * @author kaigian
  **/
 public class GenericApplicationContext extends AbstractApplicationContext implements BeanDefinitionRegistry {
 

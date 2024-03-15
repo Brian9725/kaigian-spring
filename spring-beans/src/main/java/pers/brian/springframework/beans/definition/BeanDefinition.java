@@ -5,8 +5,7 @@ import pers.brian.springframework.beans.entity.MutablePropertyValues;
 /**
  * BeanDefinition接口，被注释的是源码中未使用的部分
  *
- * @author BrianHu
- * @create 2022-04-25 15:24
+ * @author kaigian
  **/
 public interface BeanDefinition {
 

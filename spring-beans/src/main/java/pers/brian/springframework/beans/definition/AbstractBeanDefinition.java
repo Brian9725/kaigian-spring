@@ -6,8 +6,7 @@ import pers.brian.springframework.core.exception.SpringException;
 import pers.brian.springframework.core.utils.ClassUtils;
 
 /**
- * @author BrianHu
- * @create 2022-04-25 16:28
+ * @author kaigian
  **/
 public abstract class AbstractBeanDefinition implements BeanDefinition, Cloneable {
 

@@ -3,8 +3,7 @@ package pers.brian.springframework.beans.factory;
 /**
  * 表示BeanFactory可以枚举所有Bean实例，如果有父BeanFactory不会访问父BeanFactory中的Bean
  *
- * @author BrianHu
- * @create 2022-04-29 13:57
+ * @author kaigian
  **/
 public interface ListableBeanFactory extends BeanFactory {
 

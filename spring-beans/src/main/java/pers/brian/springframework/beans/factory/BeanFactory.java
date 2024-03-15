@@ -4,8 +4,7 @@ import pers.brian.springframework.core.exception.SpringErrorCodeEnum;
 import pers.brian.springframework.core.exception.SpringException;
 
 /**
- * @author BrianHu
- * @create 2022-01-11 11:35
+ * @author kaigian
  **/
 public interface BeanFactory {
 

@@ -6,8 +6,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @author BrianHu
- * @create 2022-04-29 14:45
+ * @author kaigian
  **/
 public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
 

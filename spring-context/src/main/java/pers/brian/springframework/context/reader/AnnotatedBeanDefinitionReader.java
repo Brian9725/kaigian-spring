@@ -3,8 +3,7 @@ package pers.brian.springframework.context.reader;
 import pers.brian.springframework.beans.registry.BeanDefinitionRegistry;
 
 /**
- * @author BrianHu
- * @create 2022-04-27 16:53
+ * @author kaigian
  **/
 public class AnnotatedBeanDefinitionReader {
 

@@ -1,8 +1,7 @@
 package pers.brian.springframework.beans.support;
 
 /**
- * @author BrianHu
- * @create 2021-09-06 23:41
+ * @author kaigian
  **/
 public interface InitializingBean {
 

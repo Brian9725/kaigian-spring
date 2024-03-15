@@ -3,8 +3,7 @@ package pers.brian.springframework.context;
 import pers.brian.springframework.beans.factory.BeanFactory;
 
 /**
- * @author BrianHu
- * @create 2021-09-03 22:18
+ * @author kaigian
  **/
 public interface ApplicationContext extends BeanFactory {
 

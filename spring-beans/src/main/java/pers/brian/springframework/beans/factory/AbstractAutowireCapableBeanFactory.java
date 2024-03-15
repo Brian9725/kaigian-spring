@@ -15,8 +15,7 @@ import pers.brian.springframework.beans.support.MergedBeanDefinitionPostProcesso
 import pers.brian.springframework.core.exception.SpringException;
 
 /**
- * @author BrianHu
- * @create 2022-04-29 15:25
+ * @author kaigian
  **/
 public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory implements AutowireCapableBeanFactory {
 

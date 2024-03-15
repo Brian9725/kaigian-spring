@@ -3,8 +3,7 @@ package pers.brian.springframework.context;
 import pers.brian.springframework.beans.factory.BeanFactory;
 
 /**
- * @author BrianHu
- * @create 2022-04-29 9:49
+ * @author kaigian
  **/
 public abstract class AbstractApplicationContext implements ApplicationContext {
 

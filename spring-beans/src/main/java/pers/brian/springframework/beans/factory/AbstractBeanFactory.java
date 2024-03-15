@@ -16,8 +16,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @author BrianHu
- * @create 2022-04-29 14:16
+ * @author kaigian
  **/
 public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport implements ConfigurableBeanFactory {
 

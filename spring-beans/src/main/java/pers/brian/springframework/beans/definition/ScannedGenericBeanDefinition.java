@@ -1,8 +1,7 @@
 package pers.brian.springframework.beans.definition;
 
 /**
- * @author BrianHu
- * @create 2022-04-26 10:04
+ * @author kaigian
  **/
 public class ScannedGenericBeanDefinition extends GenericBeanDefinition {
 }

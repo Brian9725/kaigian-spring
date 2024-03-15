@@ -3,8 +3,7 @@ package pers.brian.springframework.beans.registry;
 /**
  * 单例Bean注册接口
  *
- * @author BrianHu
- * @create 2022-04-29 14:42
+ * @author kaigian
  **/
 public interface SingletonBeanRegistry {
 
